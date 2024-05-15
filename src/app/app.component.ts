@@ -18,5 +18,9 @@ export class AppComponent {
   redirectToVenta() {
     this.router.navigateByUrl("/venta");
   }
+
+  redirectToRegister() {
+    this.router.navigate(['/register']);
+  }
 }
 
