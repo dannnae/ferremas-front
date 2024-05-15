@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CarroComponent } from './pages/carro/carro.component';
 import { VentaComponent } from './pages/venta/venta.component';
+import { WebpayComponent } from './pages/webpay/webpay.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { VentaComponent } from './pages/venta/venta.component';
     RegisterComponent,
     CarroComponent,
     VentaComponent,
+    WebpayComponent,
   ],
   imports: [
     BrowserModule,
