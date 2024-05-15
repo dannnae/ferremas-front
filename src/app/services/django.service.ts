@@ -26,11 +26,7 @@ export class DjangoService {
   }
 
   confirmarPago(url: string, data: any): Observable<any> {
-    const httpHeaders = new HttpHeaders()
-      .set('Accept', 'application/json')
-      .set('Access-Control-Allow-Origin', 'http://localhost:4200/');
-
-    return this.http.post<any>(url, data, { headers: httpHeaders, responseType: 'json' });
+    return this.http.post<any>(url, data);
   }
 }
 
