@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 import { DjangoService } from 'src/app/services/django.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { DjangoService } from 'src/app/services/django.service';
 export class VentaComponent {
   tokenPago: string | undefined; 
 
-  constructor(private djangoservice: DjangoService) { }
+  constructor(private djangoservice: DjangoService, private router: Router) { }
 
   crearBoleta() {
     const boletaData = {
@@ -22,19 +23,17 @@ export class VentaComponent {
     this.djangoservice.crearBoleta(boletaData).subscribe(
       (response) => {
         console.log('respuesta de creación de boleta:', response);
-        this.djangoservice.confirmarPago(response.url, { 'token_ws': response.token }).subscribe(
-          (response) => {
-            console.log(response)
-          },
-          (error) => {
-            console.log(error)
+        const navigationExtras: NavigationExtras = {
+          state: {
+            htmlContent: response
           }
-        )
+        };
+        this.router.navigate(['/webpay'], navigationExtras);
       },
       (error) => {
-        console.error('Error al crear la boleta:', error);
+        console.log(error)
       }
-    );
+    )
   }
       
 }
