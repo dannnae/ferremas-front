@@ -20,5 +20,17 @@ export class DjangoService {
   registrarUsuario(datosUsuario: any): Observable<any> {
     return this.http.post<any>(`${this.apiURL}/usuario/`, datosUsuario)
   }
+
+  crearBoleta(boletaData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiURL}/boleta/`, boletaData);
+  }
+
+  confirmarPago(url: string, data: any): Observable<any> {
+    const httpHeaders = new HttpHeaders()
+      .set('Accept', 'application/json')
+      .set('Access-Control-Allow-Origin', 'http://localhost:4200/');
+
+    return this.http.post<any>(url, data, { headers: httpHeaders, responseType: 'json' });
+  }
 }
 
