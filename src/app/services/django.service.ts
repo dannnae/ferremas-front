@@ -12,13 +12,12 @@ export class DjangoService {
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiURL}/login/`, { email, password })
-      .pipe(retry(3));
-  }
+  login(data: any): Observable<any> {
+    return this.http.post(`${this.apiURL}/login/`, data);
+  }  
 
   registrarUsuario(datosUsuario: any): Observable<any> {
-    return this.http.post<any>(`${this.apiURL}/usuario/`, datosUsuario)
+    return this.http.post<any>(`${this.apiURL}/usuario/`, datosUsuario);
   }
 
   crearBoleta(boletaData: any): Observable<any> {
