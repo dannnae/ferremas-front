@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,5 +10,8 @@ export class CarritoService {
 
   constructor(private http: HttpClient) { }
 
+  getCarrito(): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/boleta/get_carrito/`);
+  }
   }
 
