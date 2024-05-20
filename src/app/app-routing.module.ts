@@ -6,14 +6,15 @@ import { CarroComponent } from './pages/carro/carro.component';
 import { HomeComponent } from './pages/home/home.component';
 import { VentaComponent } from './pages/venta/venta.component';
 import { WebpayComponent } from './pages/webpay/webpay.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'carro', component: CarroComponent},
-  { path: 'home', component: HomeComponent},
-  { path: 'venta', component: VentaComponent},
-  { path: 'webpay', component: WebpayComponent},
+  { path: 'carro', component: CarroComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'venta', component: VentaComponent, canActivate: [AuthGuard] },
+  { path: 'webpay', component: WebpayComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
