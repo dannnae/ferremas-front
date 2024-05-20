@@ -1,0 +1,66 @@
+.footer {
+    background-color: #000; /* Color de fondo negro */
+    color: white;
+    padding: 2rem 8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer__section {
+    flex: 1;
+  }
+  
+  .footer__section--logo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer__logo {
+    max-width: 200px;
+    margin-bottom: 1rem;
+  }
+  
+  .footer__text {
+    margin-bottom: 1rem;
+  }
+  
+  .footer__contact {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer__contact li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer__section--payments {
+    text-align: right;
+  }
+  
+  .footer__webpay {
+    max-width: 300px; /* Incrementamos el tamaño máximo del logo */
+    margin-bottom: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2rem;
+    }
+  
+    .footer__section {
+      margin-bottom: 1.5rem;
+    }
+  
+    .footer__section--payments {
+      text-align: left;
+    }
+  
+    .footer__webpay {
+      max-width: 150px; /* Ajuste para pantallas pequeñas */
+    }
+  }
+  
+  

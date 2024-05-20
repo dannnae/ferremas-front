@@ -20,8 +20,8 @@ export class DjangoService {
     return this.http.post<any>(`${this.apiURL}/usuario/`, datosUsuario);
   }
 
-  crearBoleta(boletaPk: number): Observable<any> {
-    return this.http.get<any>(`${this.apiURL}/boleta/${boletaPk}/pagar`);
+  crearBoleta(boletaData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiURL}/boleta/`, boletaData);
   }
 
   confirmarPago(url: string, data: any): Observable<any> {

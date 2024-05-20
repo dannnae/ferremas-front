@@ -1,0 +1,116 @@
+.banner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 600px; /* Altura por defecto */
+    background-color: black; /* Color de fondo de reserva */
+  }
+  
+  .banner__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 2s ease, opacity 1s ease; /* Zoom más lento */
+    opacity: 0.7; /* Imagen oscurecida por defecto */
+  }
+  
+  .banner__content {
+    position: absolute;
+    text-align: center;
+    color: white;
+    width: 100%; /* Asegura que el contenido se centre correctamente */
+    padding: 0 1rem; /* Añade padding para que el botón no toque los bordes */
+  }
+  
+  .banner__title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .banner__subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .banner__button {
+    padding: 0.5rem 1rem;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .banner__button:hover {
+    background-color: darkred;
+  }
+  
+  .banner:hover .banner__image {
+    transform: scale(1.1);
+    opacity: 1; /* Imagen aclarada al pasar el mouse */
+  }
+  
+  /* Media Queries para Responsividad */
+  @media (max-width: 1200px) {
+    .banner {
+      height: 500px; /* Altura para pantallas medianas */
+    }
+  
+    .banner__title {
+      font-size: 1.8rem;
+    }
+  
+    .banner__subtitle {
+      font-size: 1rem;
+    }
+  
+    .banner__button {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .banner {
+      height: 400px; /* Altura para pantallas pequeñas */
+    }
+  
+    .banner__title {
+      font-size: 1.5rem;
+    }
+  
+    .banner__subtitle {
+      font-size: 0.9rem;
+    }
+  
+    .banner__button {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+      width: 100%; /* El botón se expande para llenar el ancho disponible */
+      max-width: calc(100% - 2rem); /* Máximo ancho menos margen */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .banner {
+      height: 300px; /* Altura para pantallas muy pequeñas */
+    }
+  
+    .banner__title {
+      font-size: 1.2rem;
+    }
+  
+    .banner__subtitle {
+      font-size: 0.8rem;
+    }
+  
+    .banner__button {
+      font-size: 0.7rem;
+      padding: 0.3rem 0.6rem;
+      width: 100%; /* El botón se expande para llenar el ancho disponible */
+      max-width: calc(100% - 2rem); /* Máximo ancho menos margen */
+    }
+  }
+  
