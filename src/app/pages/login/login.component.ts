@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DjangoService } from '../../services/django.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private djangoService: DjangoService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -20,7 +20,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.djangoService.login(this.loginForm.value).subscribe(
+      this.authService.login(this.loginForm.value).subscribe(
         (response: any) => {
           console.log('Login exitoso:', response);
           localStorage.setItem('access_token', response.access);
