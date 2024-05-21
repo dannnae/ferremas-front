@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+<div *ngIf="productos.length > 0">
+    <h2>Herramientas manuales</h2>
+    <div *ngFor="let producto of productos" class="product">
+      <h3>{{ producto.nombre }}</h3>
+      <img [src]="producto.imagen" alt="{{ producto.nombre }}" *ngIf="producto.imagen">
+      <p>{{ producto.descripcion }}</p>
+      <p>Precio: {{ producto.valor }}</p>
+      <p>Marca: {{ producto.marca }}</p>
+    <button (click)="agregarProducto(producto.id)" type="button" class="btn btn-primary">Agregar a carrito</button>
+    </div>
+  </div>
+  <div *ngIf="productos.length === 0">
+    <p>No existe productos en esta categoría</p>
+  </div>
+<app-footer></app-footer>
