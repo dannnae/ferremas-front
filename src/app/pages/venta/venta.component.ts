@@ -9,7 +9,6 @@ import { CarritoService } from 'src/app/services/carrito.service';
   styleUrls: ['./venta.component.css']
 })
 export class VentaComponent implements OnInit{
-  tokenPago: string | undefined; 
   carrito: any;
   constructor(private djangoservice: DjangoService, private router: Router, private carritoService: CarritoService) { }
 
