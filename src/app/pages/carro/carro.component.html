@@ -1,1 +1,14 @@
-<p>carro works!</p>
+<div>
+  <ul *ngIf="carrito">
+    <li *ngFor="let pedido of carrito.pedidos">
+      <div class="card">
+        <div class="card-header">{{pedido.nombre_producto}}</div>
+        <div class="card-body">
+          <p class="card-text">Precio: ${{pedido.valor_total}}</p>
+          <a (click)="editarCantidad(pedido, -1)" class="btn btn-light">-</a>{{pedido.cantidad}}<a (click)="editarCantidad(pedido, 1)" class="btn btn-light">+</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <a href="venta" class="btn btn-primary">Pagar</a>
+</div>
