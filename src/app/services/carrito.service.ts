@@ -13,5 +13,13 @@ export class CarritoService {
   getCarrito(): Observable<any> {
     return this.http.get<any>(`${this.apiURL}/boleta/get_carrito/`);
   }
+
+  editarPedido(body: any, pedidoId: number): Observable<any> {
+    return this.http.post<any>(`${this.apiURL}/boleta/${pedidoId}/agregar_editar_producto/`, body)
   }
+
+  eliminarPedido(body: any): Observable<any> {
+    return this.http.put<any>(`${this.apiURL}/boleta/eliminar_pedido/`, body)
+  }
+}
 
