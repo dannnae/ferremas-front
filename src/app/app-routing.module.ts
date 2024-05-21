@@ -8,6 +8,7 @@ import { VentaComponent } from './pages/venta/venta.component';
 import { WebpayComponent } from './pages/webpay/webpay.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
+import { HerramientasManualesComponent } from './pages/herramientas-manuales/herramientas-manuales.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'webpay', component: WebpayComponent },
   { path: 'inicio', component: InicioComponent },
   { path: 'categorias', component: CategoriasComponent },
+  { path: 'herramientas-manuales', component: HerramientasManualesComponent },
 ];
 
 @NgModule({
