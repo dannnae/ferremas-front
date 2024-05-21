@@ -1,0 +1,63 @@
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px; /* Ajustar el espacio entre los elementos */
+    background-color: black; /* Fondo negro */
+  }
+  
+  .category {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .category__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  
+  .category__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Oscurecer más las imágenes */
+    transition: background-color 0.5s ease;
+  }
+  
+  .category__title {
+    position: absolute;
+    color: white;
+    font-size: 2rem; /* Hacer las letras más grandes */
+    z-index: 2;
+    text-align: center;
+  }
+  
+  .category:hover .category__image {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  
+  .category:hover .category__overlay {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Media queries para hacer la grilla responsiva */
+  @media (max-width: 1024px) {
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas medianas */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .categories-grid {
+      grid-template-columns: 1fr; /* 1 columna en pantallas pequeñas */
+    }
+  }
+  

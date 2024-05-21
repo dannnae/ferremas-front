@@ -6,21 +6,23 @@ import { CarroComponent } from './pages/carro/carro.component';
 import { HomeComponent } from './pages/home/home.component';
 import { VentaComponent } from './pages/venta/venta.component';
 import { WebpayComponent } from './pages/webpay/webpay.component';
-import { AuthGuard } from './guards/auth.guard';
+import { InicioComponent } from './pages/inicio/inicio.component';
+import { CategoriasComponent } from './pages/categorias/categorias.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'carro', component: CarroComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'venta', component: VentaComponent, canActivate: [AuthGuard] },
-  { path: 'webpay', component: WebpayComponent, canActivate: [AuthGuard] },
+  { path: 'carro', component: CarroComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'venta', component: VentaComponent },
+  { path: 'webpay', component: WebpayComponent },
+  { path: 'inicio', component: InicioComponent },
+  { path: 'categorias', component: CategoriasComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
-  
-}
+export class AppRoutingModule { }

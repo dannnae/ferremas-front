@@ -6,18 +6,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CarroComponent } from './pages/carro/carro.component';
 import { VentaComponent } from './pages/venta/venta.component';
 import { WebpayComponent } from './pages/webpay/webpay.component';
-import { JwtModule } from '@auth0/angular-jwt';
-import { AuthService } from './services/auth.service';
-import { AuthGuard } from './guards/auth.guard';
-import { TokenInterceptorInterceptor } from './interceptors/token-interceptor.interceptor';
-
-export function tokenGetter() {
-  return localStorage.getItem("access_token");
-}
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { InicioComponent } from './pages/inicio/inicio.component';
+import { CategoriasComponent } from './pages/categorias/categorias.component';
+import { CategoriaComponent } from './components/categoria/categoria.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +26,12 @@ export function tokenGetter() {
     CarroComponent,
     VentaComponent,
     WebpayComponent,
+    NavbarComponent,
+    BannerComponent,
+    FooterComponent,
+    InicioComponent,
+    CategoriasComponent,
+    CategoriaComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,23 +39,8 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: ['localhost:8000'],
-        disallowedRoutes: ['localhost:8000/api/login/']
-      }
-    }),
   ],
-  providers: [
-    AuthService,
-    AuthGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorInterceptor,
-      multi: true,
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
