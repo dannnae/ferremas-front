@@ -21,10 +21,6 @@ export class NavbarComponent implements OnInit {
   redirectToCategorias() {
     this.router.navigate(['/categorias']);
   }
-  
-  redirectToRegister() {
-    this.router.navigate(['/register']);
-  }
 
   addMenuToggleListener(): void {
     const toggleButton = document.querySelector('.navbar__toggle');

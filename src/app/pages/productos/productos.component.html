@@ -1,0 +1,19 @@
+<div class="productos-container">
+  <app-navbar></app-navbar>
+  <div class="productos-header">
+    <h1>{{ categoria }}</h1>
+    <p>Mostrando los {{ productos.length }} resultados</p>
+  </div>
+  <div class="productos-grid">
+    <div *ngFor="let producto of productos" class="producto-card">
+      <img [src]="producto.imagen" alt="{{ producto.nombre }}" class="producto-imagen">
+      <div class="producto-info">
+        <h2>{{ producto.nombre }}</h2>
+        <p>{{ producto.descripcion }}</p>
+        <p class="producto-precio">{{ producto.precio | currency }}</p>
+        <button class="btn-carrito">Añadir al carrito</button>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

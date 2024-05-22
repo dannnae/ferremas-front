@@ -20,10 +20,6 @@ export class DjangoService {
     return this.http.post<any>(`${this.apiURL}/usuario/`, datosUsuario);
   }
 
-  mostrarProductos(categoriaId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiURL}/producto?categoria_id=${categoriaId}`);
-  }
-
   crearBoleta(boletaData: any): Observable<any> {
     return this.http.post<any>(`${this.apiURL}/boleta/`, boletaData);
   }
