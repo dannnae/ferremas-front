@@ -26,6 +26,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/register']);
   }
 
+  redirectToCarro() {
+    this.router.navigate(['/carro']);
+  }
+
   addMenuToggleListener(): void {
     const toggleButton = document.querySelector('.navbar__toggle');
     const menu = document.querySelector('.navbar__menu');
