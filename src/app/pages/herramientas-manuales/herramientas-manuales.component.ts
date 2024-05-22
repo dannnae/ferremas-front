@@ -28,7 +28,12 @@ export class HerramientasManualesComponent implements OnInit{
     });
   }
   agregarProducto(productoId: number){
-    this.carritoService.editarPedido({ producto_id: productoId, cantidad: 1 }, this.carrito.id).subscribe(
+    let cantidad = 1;
+    const pedido = this.carrito.pedidos.find((obj: any) => obj.producto === productoId);
+    if (pedido) {
+      cantidad = pedido.cantidad + 1;
+    }
+    this.carritoService.editarPedido({ producto_id: productoId, cantidad: cantidad }, this.carrito.id).subscribe(
       (response) => {
         this.carrito = response;
       }
