@@ -1,16 +1,39 @@
 <app-navbar></app-navbar>
-<div *ngIf="productos.length > 0">
-    <h2>Herramientas manuales</h2>
-    <div *ngFor="let producto of productos" class="product">
-      <h3>{{ producto.nombre }}</h3>
-      <img [src]="producto.imagen" alt="{{ producto.nombre }}" *ngIf="producto.imagen">
-      <p>{{ producto.descripcion }}</p>
-      <p>Precio: {{ producto.valor }}</p>
-      <p>Marca: {{ producto.marca }}</p>
-    <button (click)="agregarProducto(producto.id)" type="button" class="btn btn-primary">Agregar a carrito</button>
+
+<div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Producto agregado al carrito</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="cerrarModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        El producto se ha agregado correctamente al carrito
+      </div>
     </div>
   </div>
-  <div *ngIf="productos.length === 0">
-    <p>No existe productos en esta categoría</p>
+</div>
+
+<div *ngIf="productos.length > 0" class="row">
+  <h2 class="col-12">Herramientas manuales</h2>
+  <div *ngFor="let producto of productos" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+    <div class="card">
+      <img [src]="producto.imagen" alt="{{ producto.nombre }}" class="card-img-top" *ngIf="producto.imagen">
+      <div class="card-body">
+        <h5 class="card-title">{{ producto.nombre }}</h5>
+        <p class="card-text">{{ producto.descripcion }}</p>
+        <p class="card-text">Precio: {{ producto.valor }}</p>
+        <p class="card-text">Marca: {{ producto.marca }}</p>
+        <button (click)="agregarProducto(producto.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar a carrito</button>
+      </div>
+    </div>
   </div>
+</div>
+
+<div *ngIf="productos.length === 0">
+  <p>No hay productos en esta categoría</p>
+</div>
+
 <app-footer></app-footer>
