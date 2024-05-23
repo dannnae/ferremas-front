@@ -24,8 +24,8 @@ export class DjangoService {
     return this.http.get<any>(`${this.apiURL}/producto?categoria_id=${categoriaId}`);
   }
 
-  crearBoleta(boletaData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiURL}/boleta/`, boletaData);
+  crearBoleta(boletaId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/boleta/${boletaId}/pagar/`);
   }
 
   confirmarPago(url: string, data: any): Observable<any> {
