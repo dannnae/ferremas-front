@@ -20,6 +20,10 @@ export class RegisterComponent {
     });
   }
 
+  redirectToLogin() {
+    this.router.navigate(['/login']);
+  }
+
   onSubmit() {
     if (this.registroForm.valid) {
       console.log(this.registroForm.value)
