@@ -31,7 +31,7 @@
 <div class="row p-4">
   <div *ngFor="let producto of productos" class="col-lg-4 col-md-6 col-sm-12 mb-4">
     <div class="card">
-      <img [src]="producto.imagen" alt="{{ producto.nombre }}" class="card-img-top" *ngIf="producto.imagen">
+      <img [src]="producto.imagen" alt="{{ producto.nombre }}" class="card-img-top mx-auto" *ngIf="producto.imagen" style="width: 350px; height: 350px;">
       <div class="card-body">
         <h5 class="card-title">{{ producto.nombre }}</h5>
         <p class="card-text">{{ producto.descripcion }}</p>
