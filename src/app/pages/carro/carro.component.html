@@ -17,7 +17,7 @@
           <tbody>
             <tr *ngFor="let pedido of carrito.pedidos">
               <td>
-                <img [src]="pedido.imagen" alt="{{pedido.nombre_producto}}" class="img-thumbnail" style="width: 50px; height: 50px;">
+                <img [src]="pedido.imagen_producto" alt="{{pedido.nombre_producto}}" class="img-thumbnail" style="width: 50px; height: 50px;">
                 {{pedido.nombre_producto}}
               </td>
               <td>${{pedido.valor_unitario}}</td>
@@ -48,7 +48,7 @@
           <p class="card-text">Envío:</p>
           <!-- <p class="card-text">Envío: <button (click)="calcularEnvio()" class="btn btn-link">Calcular envío</button></p> -->
           <h5 class="card-text">Total: ${{total}}</h5>
-          <a href="venta" class="btn btn-primary btn-block">Finalizar compra</a>
+          <a href="venta" class="btn btn-primary btn-block">Finalizar</a>
         </div>
       </div>
     </div>
