@@ -16,6 +16,7 @@ export class HerramientasManualesComponent implements OnInit{
   carrito: any;
   productoAgregado: boolean = false;
   modalElement = document.getElementById('exampleModal') as HTMLElement;
+  selectedCurrency: string = '1';
 
   constructor(private djangoservice: DjangoService, private router: Router, private carritoService: CarritoService, 
     private route: ActivatedRoute) { }
