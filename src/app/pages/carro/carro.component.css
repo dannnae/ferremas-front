@@ -2,3 +2,18 @@ ul {
     list-style: none;
     padding: 15px;
 }
+
+.input-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-group .btn {
+    border-radius: 0;
+  }
+  
+  .input-group .form-control {
+    max-width: 50px;
+    padding: 0;
+  }
+  
