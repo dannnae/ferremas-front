@@ -25,7 +25,7 @@ export class LoginComponent {
           console.log('Login exitoso:', response);
           localStorage.setItem('access_token', response.access);
           localStorage.setItem('refresh_token', response.refresh);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/inicio']);
         },
         (error: any) => {
           console.error('Error en el login:', error);
