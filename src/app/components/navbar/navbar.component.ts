@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   redirectToCategorias() {
     this.router.navigate(['/categorias']);
   }
-  
+
   redirectToRegister() {
     this.router.navigate(['/register']);
   }
@@ -41,4 +41,3 @@ export class NavbarComponent implements OnInit {
     }
   }
 }
-

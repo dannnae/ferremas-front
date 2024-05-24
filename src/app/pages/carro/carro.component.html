@@ -1,54 +1,54 @@
 <app-navbar></app-navbar>
 
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-8">
-      <div *ngIf="carrito && carrito.pedidos.length > 0">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">Producto</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col">Total</th>
-              <th scope="col">Remover</th>
+<div class="carrito">
+  <div class="carrito__container">
+    <div class="carrito__productos">
+      <div *ngIf="carrito && carrito.pedidos.length > 0" class="carrito__tabla-container">
+        <table class="carrito__tabla">
+          <thead class="carrito__tabla-head">
+            <tr class="carrito__tabla-row">
+              <th scope="col" class="carrito__tabla-header">Producto</th>
+              <th scope="col" class="carrito__tabla-header">Precio</th>
+              <th scope="col" class="carrito__tabla-header">Cantidad</th>
+              <th scope="col" class="carrito__tabla-header">Total</th>
+              <th scope="col" class="carrito__tabla-header">Remover</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let pedido of carrito.pedidos">
-              <td>
-                <img [src]="pedido.imagen_producto" alt="{{pedido.nombre_producto}}" class="img-thumbnail" style="width: 50px; height: 50px;">
+          <tbody class="carrito__tabla-body">
+            <tr *ngFor="let pedido of carrito.pedidos" class="carrito__tabla-row">
+              <td class="carrito__tabla-cell">
+                <img [src]="pedido.imagen_producto" alt="{{pedido.nombre_producto}}" class="carrito__imagen">
                 {{pedido.nombre_producto}}
               </td>
-              <td>${{pedido.valor_unitario}}</td>
-              <td>
-                <div class="input-group">
-                  <button (click)="editarCantidad(pedido, -1)" class="btn btn-light btn-sm">-</button>
-                  <input type="text" class="form-control text-center" [value]="pedido.cantidad" readonly>
-                  <button (click)="editarCantidad(pedido, 1)" class="btn btn-light btn-sm">+</button>
+              <td class="carrito__tabla-cell">${{pedido.valor_unitario}}</td>
+              <td class="carrito__tabla-cell">
+                <div class="carrito__cantidad">
+                  <button (click)="editarCantidad(pedido, -1)" class="carrito__boton">-</button>
+                  <input type="text" class="carrito__input" [value]="pedido.cantidad" readonly>
+                  <button (click)="editarCantidad(pedido, 1)" class="carrito__boton">+</button>
                 </div>
               </td>
-              <td>${{pedido.valor_unitario * pedido.cantidad}}</td>
-              <td>
-                <button (click)="editarCantidad(pedido, -pedido.cantidad)" class="btn btn-danger btn-sm">&times;</button>
+              <td class="carrito__tabla-cell">${{pedido.valor_unitario * pedido.cantidad}}</td>
+              <td class="carrito__tabla-cell">
+                <button (click)="editarCantidad(pedido, -pedido.cantidad)" class="carrito__boton-remover">&times;</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div *ngIf="!carrito || carrito.pedidos.length === 0">
+      <div *ngIf="!carrito || carrito.pedidos.length === 0" class="carrito__mensaje">
         <p>No hay productos en el carrito</p>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Total pedido</h5>
-          <p class="card-text">Subtotal: ${{subtotal}}</p>
-          <p class="card-text">Envío:</p>
-          <!-- <p class="card-text">Envío: <button (click)="calcularEnvio()" class="btn btn-link">Calcular envío</button></p> -->
-          <h5 class="card-text">Total: ${{total}}</h5>
-          <a href="venta" class="btn btn-primary btn-block">Finalizar</a>
+    <div class="carrito__resumen">
+      <div class="carrito__card">
+        <div class="carrito__card-body">
+          <h5 class="carrito__card-title">Total pedido</h5>
+          <p class="carrito__card-text">Subtotal: ${{subtotal}}</p>
+          <p class="carrito__card-text">Envío:</p>
+          <!-- <p class="carrito__card-text">Envío: <button (click)="calcularEnvio()" class="carrito__card-link">Calcular envío</button></p> -->
+          <h5 class="carrito__card-text">Total: ${{total}}</h5>
+          <a href="venta" class="carrito__card-button">Finalizar</a>
         </div>
       </div>
     </div>
