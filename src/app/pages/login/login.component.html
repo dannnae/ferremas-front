@@ -1,16 +1,16 @@
 <app-navbar></app-navbar>
-<div>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div>
-        <label for="email">Email</label>
-        <input id="email" formControlName="email" type="email">
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input id="password" formControlName="password" type="password">
-      </div>
-      <button type="submit">Login</button>
-    </form>
-  </div>
+<div class="login">
+  <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="login__form-group">
+      <label for="email" class="login__label">Email</label>
+      <input id="email" formControlName="email" type="email" class="login__input">
+    </div>
+    <div class="login__form-group">
+      <label for="password" class="login__label">Contraseña</label>
+      <input id="password" formControlName="password" type="password" class="login__input">
+    </div>
+    <button type="submit" class="login__button">Ingresar</button>
+  </form>
+</div>
 <app-footer></app-footer>
-  
+
