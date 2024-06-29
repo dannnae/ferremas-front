@@ -12,13 +12,23 @@
       <a class="navbar__link" (click)="redirectToInicio()">Inicio</a>
     </li>
     <li class="navbar__item">
-      <a  class="navbar__link" (click)="redirectToCategorias()">Categorías</a>
+      <a class="navbar__link" (click)="redirectToCategorias()">Categorías</a>
+    </li>
+    <li *ngIf="!isAuthenticated" class="navbar__item">
+      <a class="navbar__link" (click)="redirectToRegister()">Registrarse</a>
+    </li>
+    <li *ngIf="isAuthenticated" class="navbar__item dropdown">
+      <a class="navbar__link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="bi bi-person-circle"></i>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#"><i class="bi bi-person-lines-fill"></i>Perfil</a>
+        <a class="dropdown-item" href="#"><i class="bi bi-gear"></i>Ajustes</a>
+        <a class="dropdown-item" href="#" (click)="logout()"><i class="bi bi-box-arrow-right"></i>Cerrar sesión</a>
+      </div>
     </li>
     <li class="navbar__item">
-      <a  class="navbar__link" (click)="redirectToRegister()">Registrarse</a>
-    </li>
-    <li class="navbar__item">
-      <a  class="navbar__link bi bi-cart3" (click)="redirectToCarro()"></a>
+      <a class="navbar__link bi bi-cart3" (click)="redirectToCarro()"></a>
     </li>
   </ul>
 </nav>

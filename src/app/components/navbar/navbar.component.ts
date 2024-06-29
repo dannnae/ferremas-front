@@ -7,11 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  isAuthenticated: boolean = false;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.checkAuthentication();
     this.addMenuToggleListener();
+  }
+
+  checkAuthentication(): void {
+    const token = localStorage.getItem('access_token');
+    this.isAuthenticated = !!token;
   }
 
   redirectToInicio() {
@@ -28,6 +35,13 @@ export class NavbarComponent implements OnInit {
 
   redirectToCarro() {
     this.router.navigate(['/carro']);
+  }
+
+  logout() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    this.isAuthenticated = false;
+    this.router.navigate(['/login']);
   }
 
   addMenuToggleListener(): void {
