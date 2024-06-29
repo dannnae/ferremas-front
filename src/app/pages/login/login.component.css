@@ -17,6 +17,12 @@
     align-items: center;
     height: 80vh; /* Ajusta la altura según tus necesidades */
   }
+
+  .login__error {
+    color: red;
+    margin-top: 10px;
+    font-size: 0.9em;
+  }
   
   .login__form {
     background-color: #f8f9fa;

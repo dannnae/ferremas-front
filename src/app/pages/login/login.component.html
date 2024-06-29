@@ -9,8 +9,10 @@
       <label for="password" class="login__label">Contraseña</label>
       <input id="password" formControlName="password" type="password" class="login__input">
     </div>
+    <div *ngIf="errorMessage" class="login__error">
+      {{ errorMessage }}
+    </div>
     <button type="submit" class="login__button">Ingresar</button>
   </form>
 </div>
 <app-footer></app-footer>
-

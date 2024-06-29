@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  errorMessage: string = '';
 
   constructor(private formBuilder: FormBuilder, private djangoService: DjangoService, private router: Router) {
     this.loginForm = this.formBuilder.group({
@@ -26,9 +27,11 @@ export class LoginComponent {
           localStorage.setItem('access_token', response.access);
           localStorage.setItem('refresh_token', response.refresh);
           this.router.navigate(['/inicio']);
+          this.errorMessage = '';
         },
         (error: any) => {
           console.error('Error en el login:', error);
+          this.errorMessage = 'Correo o contraseña incorrectos';
         }
       );
     }
