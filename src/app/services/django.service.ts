@@ -31,5 +31,15 @@ export class DjangoService {
   confirmarPago(url: string, data: any): Observable<any> {
     return this.http.post<any>(url, data);
   }
-}
 
+  datosFactura(datos: any): Observable<any> {
+    return this.http.post<any>(`${this.apiURL}/factura/`, datos)
+  }
+
+  detailFacturas(facturaId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/factura/${facturaId}/`);
+  }
+  listarTodasFacturas(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiURL}/factura/`);
+  }
+}
