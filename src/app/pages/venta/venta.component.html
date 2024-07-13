@@ -4,46 +4,50 @@
   <div class="row">
     <div class="col-md-6">
       <div class="card">
-        <h5 class="card-header">Facturación y Envío (no ta hecho)</h5>
+        <h5 class="card-header">Facturación y Envío</h5>
         <div class="card-body">
-          <form>
+          <form (ngSubmit)="guardarDatosFactura()">
             <div class="form-group mb-3">
               <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nombre" required>
+              <input type="text" class="form-control" id="nombre" required [(ngModel)]="datos.nombre" name="nombre">
             </div>
             <div class="form-group mb-3">
               <label for="apellidos" class="form-label">Apellidos</label>
-              <input type="text" class="form-control" id="apellidos" required>
+              <input type="text" class="form-control" id="apellidos" required [(ngModel)]="datos.apellidos" name="apellidos">
             </div>
             <div class="form-group mb-3">
               <label for="email" class="form-label">Dirección de correo electrónico</label>
-              <input type="email" class="form-control" id="email" required>
+              <input type="email" class="form-control" id="email" required [(ngModel)]="datos.email" name="email"> 
             </div>
             <div class="form-group mb-3">
-              <label for="rut" class="form-label">RUT / Documento de Identificación</label>
-              <input type="text" class="form-control" id="rut" required>
+              <label for="rut" class="form-label">RUT</label>
+              <input type="text" class="form-control" id="rut" required [(ngModel)]="datos.rut" name="rut">
             </div>
             <div class="form-group mb-3">
               <label for="telefono" class="form-label">Teléfono</label>
-              <input type="tel" class="form-control" id="telefono" required>
+              <input type="tel" class="form-control" id="telefono" required [(ngModel)]="datos.telefono" name="telefono">
+            </div>
+            <div class="form-group mb-3">
+              <label for="region" class="form-label">Region</label>
+              <select class="form-select" id="region" required [(ngModel)]="datos.region" (change)="onRegionChange()" name="region">
+                <option>Elige una opción...</option>
+                <option *ngFor="let region of regiones" [value]="region.region">{{ region.region }}</option>
+              </select>
             </div>
             <div class="form-group mb-3">
               <label for="comuna" class="form-label">Comuna</label>
-              <select class="form-select" id="comuna" required>
+              <select class="form-select" id="comuna" required [disabled]="!datos.region" [(ngModel)]="datos.comuna" name="comuna">
                 <option>Elige una opción...</option>
+                <option *ngFor="let comuna of comunas">{{ comuna }}</option>
               </select>
             </div>
             <div class="form-group mb-3">
               <label for="direccion" class="form-label">Dirección</label>
-              <input type="text" class="form-control" id="direccion" placeholder="Número de la casa y nombre de la calle" required>
+              <input type="text" class="form-control" id="direccion" placeholder="Número de la casa y nombre de la calle" required [(ngModel)]="datos.direccion" name="direccion">
             </div>
             <div class="form-group mb-3">
               <label for="direccion2" class="form-label">Apartamento, habitación, etc. (opcional)</label>
-              <input type="text" class="form-control" id="direccion2">
-            </div>
-            <div class="form-group mb-3">
-              <label for="ciudad" class="form-label">Ciudad</label>
-              <input type="text" class="form-control" id="ciudad" required>
+              <input type="text" class="form-control" id="direccion2" [(ngModel)]="datos.direccion2" name="direccion2">
             </div>
           </form>
         </div>
@@ -61,10 +65,9 @@
               <ul class="list-group mb-3">
                 <li *ngFor="let item of carrito.pedidos" class="list-group-item d-flex justify-content-between align-items-center">
                   <div>{{ item.nombre_producto }} x {{ item.cantidad }}</div>
-                  <div>{{ item.valor_total }}</div>
+                  <div>${{ item.valor_total }}</div>
                 </li>
               </ul>
-              <p class="card-text fw-bold">Total del pedido: {{ totalPedido }}</p>
             </div>
           </div>
           <div *ngIf="carrito.pedidos && carrito.pedidos.length === 0">
@@ -74,16 +77,30 @@
           <!-- Métodos de Envío -->
           <h6>Elige tu método de envío</h6>
           <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="shippingMethod" id="domicilio" value="Domicilio">
+            <input class="form-check-input" type="radio" name="shippingMethod" id="domicilio" (change)="onEnvioChange('Domicilio')" value="Domicilio">
             <label class="form-check-label" for="domicilio">
               Domicilio
+              <img src="assets/images/blue.png" alt="blueexpress-logo" class="blue-logo">
             </label>
+            <div *ngIf="selected === 'Domicilio'">
+              <p class="card-text">Costo de envío: $5000</p>
+            </div>
           </div>
           <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="shippingMethod" id="sucursal" value="Sucursal">
+            <input class="form-check-input" type="radio" name="shippingMethod" id="sucursal" (change)="onEnvioChange('Sucursal')" checked value="Sucursal">
             <label class="form-check-label" for="sucursal">
               Sucursal
             </label>
+            <div *ngIf="selected === 'Sucursal'">
+              <p class="card-text">Retira directamente en cualquiera de nuestras sucursales costo $0</p>
+            </div>
+          </div>
+
+          <!-- Total pedido -->
+          <div>
+            <p class="card-text fw-bold">Subtotal: ${{ totalPedido - datos.envio}}</p>
+            <p class="card-text fw-bold">Envio: ${{ datos.envio }}</p>
+            <p class="card-text fw-bold">Total: ${{ totalPedido }}</p>
           </div>
 
           <!-- Métodos de Pago -->
@@ -99,7 +116,6 @@
             <label class="form-check-label" for="flexRadioDefault1">
               Transferencia
             </label>
-
             <div *ngIf="selectedOption === 'Transferencia'">
               <p class="card-text">Realiza tu pago directamente en nuestra cuenta bancaria. Por favor, usa el número del pedido como referencia de pago</p>
             </div>
@@ -127,8 +143,7 @@
               He leído y estoy de acuerdo con los términos y condiciones de la web
             </label>
           </div>
-          
-          <button class="btn btn-primary" (click)="crearBoleta()">Realizar el pedido</button>
+          <button class="btn btn-primary" (click)="guardarYCrearBoleta()">Guardar y Realizar el pedido</button>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { DjangoService } from 'src/app/services/django.service';
 import { CarritoService } from 'src/app/services/carrito.service';
+import { regiones } from 'src/comunas-regiones';
 
 @Component({
   selector: 'app-venta',
@@ -11,7 +12,24 @@ import { CarritoService } from 'src/app/services/carrito.service';
 export class VentaComponent implements OnInit {
   carrito: any = { items: [] }; 
   selectedOption: string = 'Debito o credito';
+  selected: string = 'Domicilio';
   totalPedido: number = 0;
+  regiones = regiones;
+  comunas: string[] = [];
+
+  datos = {
+    boleta: null,
+    nombre: '',
+    apellidos: '',
+    email: '',
+    rut: '',
+    telefono: '',
+    region: '',
+    comuna: '',
+    direccion: '',
+    direccion2: '',
+    envio: 0,
+  }
 
   constructor(
     private djangoservice: DjangoService, 
@@ -25,6 +43,7 @@ export class VentaComponent implements OnInit {
       (response) => {
         console.log('Carrito Response:', response);
         this.carrito = response;
+        this.datos.boleta = response.id;
         this.calcularTotalPedido();
         this.cdr.detectChanges(); 
       },
@@ -34,8 +53,18 @@ export class VentaComponent implements OnInit {
     );
   }
 
+  onRegionChange() {
+    const selectedRegionObj = this.regiones.find(r => r.region === this.datos.region);
+    this.comunas = selectedRegionObj ? selectedRegionObj.comunas : [];
+  }
+
   onRadioChange(value: string) {
     this.selectedOption = value;
+  }
+
+  onEnvioChange(value: string) {
+    this.selected = value;
+    this.calcularTotalPedido(); 
   }
 
   crearBoleta() {
@@ -58,11 +87,32 @@ export class VentaComponent implements OnInit {
       console.log('Pago por transferencia seleccionado');
     }
   }
+
+  guardarDatosFactura() {
+    this.datos.envio = this.selected === 'Domicilio' ? 5000 : 0;
+    this.djangoservice.datosFactura(this.datos).subscribe(
+      (response) => {
+        console.log('datos guardados', response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  guardarYCrearBoleta() {
+    this.guardarDatosFactura();
+    this.crearBoleta();
+  }
+
   calcularTotalPedido() {
     this.totalPedido = 0;
+    this.datos.envio = this.selected === 'Domicilio' ? 5000 : 0;
+
     for (let item of this.carrito.pedidos) {
       this.totalPedido += item.valor_total;
     }
+
+    this.totalPedido += this.datos.envio; 
   }
 }
-
