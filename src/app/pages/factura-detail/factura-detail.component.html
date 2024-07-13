@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+<div *ngIf="factura">
+<!-- factura-detail.component.html -->
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 text-center">
+        <img src="assets/images/logo.png" alt="Logo" style="max-width: 200px; max-height: 100px;">
+          <h3>FACTURA ELECTRONICA</h3>
+          <p>N°{{ factura.id }}</p>
+        </div>
+        <div class="col-6">
+          <h5>SEÑORES:</h5>
+          <p>{{ factura.nombre }} {{ factura.apellidos }}</p>
+          <p>RUT: {{ factura.rut }}</p>
+          <p>Dirección: {{ factura.direccion }}</p>
+          <p>Comuna: {{ factura.comuna }}</p>
+          <p>Region: {{ factura.region }}</p>
+        </div>
+        <div class="col-6 text-end">
+          <h5>FECHA EMISIÓN:</h5>
+          <p>{{ factura.fecha_emision | date }}</p>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio Unit.</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of factura.pedidos">
+                <td>{{ item.producto.codigo }}</td>
+                <td>{{ item.producto.nombre }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>{{ item.producto.valor | currency }}</td>
+                <td>{{ item.valor_total | currency }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-6">
+          <p>Forma de Pago: {{ factura.forma_pago }}</p>
+        </div>
+        <div class="col-6 text-end">
+          <p>Subtotal: {{ factura.subtotal | currency }}</p>
+          <p>IVA: {{ factura.iva | currency }}</p>
+          <p>Total: {{ factura.total | currency }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
