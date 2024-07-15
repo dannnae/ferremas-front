@@ -21,7 +21,11 @@ export class DjangoService {
   }
 
   mostrarProductos(categoriaId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiURL}/producto?categoria_id=${categoriaId}`);
+    return this.http.get<any>(`${this.apiURL}/producto?categoria=${categoriaId}`);
+  }
+
+  getCategorias(): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/categoria/`)
   }
 
   crearBoleta(boletaId: number): Observable<any> {

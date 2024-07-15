@@ -1,8 +1,8 @@
 <div class="categories-grid">
-    <div class="category" *ngFor="let category of categories"(click)="navigateToCategory(category.route)">
-      <img [src]="category.image" [alt]="category.name" class="category__image">
+    <div class="category" *ngFor="let category of categories"(click)="navigateToCategory(category.id)">
+      <img [src]="category.image" [alt]="category.nombre" class="category__image">
       <div class="category__overlay"></div>
-      <h3 class="category__title">{{ category.name }}</h3>
+      <h3 class="category__title">{{ category.nombre }}</h3>
     </div>
   </div>
 

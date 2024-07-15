@@ -1,3 +1,4 @@
+<!-- src/app/productos-categoria/productos-categoria.component.html -->
 <app-navbar></app-navbar>
 
 <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
@@ -18,7 +19,7 @@
 
 <div *ngIf="productos.length > 0" class="row p-4">
   <div class="col-6">
-    <h2 >Herramientas manuales</h2>
+    <h2>{{ categoriaNombre }}</h2>
   </div>
   <div class="col-6 d-flex justify-content-end">
     <h2>Divisas</h2>
@@ -35,7 +36,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ producto.nombre }}</h5>
         <p class="card-text">{{ producto.descripcion }}</p>
-        <p class="card-text">Precio: {{ selectedCurrency === '1' ? producto.valor : producto.valor_usd  }}</p>
+        <p class="card-text">Precio: ${{ selectedCurrency === '1' ? producto.valor : producto.valor_usd }}</p>
         <p class="card-text">Marca: {{ producto.marca }}</p>
         <button (click)="agregarProducto(producto.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar a carrito</button>
       </div>

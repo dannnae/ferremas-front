@@ -20,9 +20,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
-import { HerramientasManualesComponent } from './pages/herramientas-manuales/herramientas-manuales.component';
 import { FacturaDetailComponent } from './pages/factura-detail/factura-detail.component';
 import { FacturasListaComponent } from './pages/facturas-lista/facturas-lista.component';
+import { ProductosCategoriaComponent } from './components/productos-categoria/productos-categoria.component';
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
@@ -42,9 +42,9 @@ export function tokenGetter() {
     InicioComponent,
     CategoriasComponent,
     CategoriaComponent,
-    HerramientasManualesComponent,
     FacturaDetailComponent,
     FacturasListaComponent,
+    ProductosCategoriaComponent,
   ],
   imports: [
     BrowserModule,
