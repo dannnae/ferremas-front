@@ -27,4 +27,8 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
+
+  getTipoUsuario(idUsuario: number): Observable<any> {
+    return this.http.get(`${this.apiURL}/usuario/${idUsuario}/`);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +9,9 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   isAuthenticated: boolean = false;
+  isAdmin: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authservice: AuthService ) { }
 
   ngOnInit(): void {
     this.checkAuthentication();
@@ -18,6 +20,19 @@ export class NavbarComponent implements OnInit {
 
   checkAuthentication(): void {
     const token = localStorage.getItem('access_token');
+    if (token) {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      const decodedAccessToken = JSON.parse(jsonPayload);
+      this.authservice.getTipoUsuario(decodedAccessToken.user_id).subscribe(
+        (response) => {
+          this.isAdmin = response.type === "ADMIN" ? true : false;
+        }
+      )
+    }
     this.isAuthenticated = !!token;
   }
 
