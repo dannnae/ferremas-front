@@ -20,7 +20,7 @@
         </div>
         <div class="col-6 text-end">
           <h5>FECHA EMISIÓN:</h5>
-          <p>{{ factura.fecha_emision | date }}</p>
+          <p>{{ factura.fecha | date }}</p>
         </div>
       </div>
       <div class="row mt-4">
@@ -37,10 +37,10 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of factura.pedidos">
-                <td>{{ item.producto.codigo }}</td>
-                <td>{{ item.producto.nombre }}</td>
+                <td>{{ item.codigo }}</td>
+                <td>{{ item.nombre }}</td>
                 <td>{{ item.cantidad }}</td>
-                <td>{{ item.producto.valor | currency }}</td>
+                <td>{{ item.valor | currency }}</td>
                 <td>{{ item.valor_total | currency }}</td>
               </tr>
             </tbody>
@@ -49,12 +49,12 @@
       </div>
       <div class="row mt-4">
         <div class="col-6">
-          <p>Forma de Pago: {{ factura.forma_pago }}</p>
+          <p></p>
         </div>
         <div class="col-6 text-end">
           <p>Subtotal: {{ factura.subtotal | currency }}</p>
-          <p>IVA: {{ factura.iva | currency }}</p>
-          <p>Total: {{ factura.total | currency }}</p>
+          <p>IVA 19%: {{ factura.iva | currency }}</p>
+          <p>Total: {{ factura.valor_total | currency }}</p>
         </div>
       </div>
     </div>
